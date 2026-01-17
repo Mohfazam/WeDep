@@ -12,7 +12,7 @@ COPY ./apps/websocket ./apps/websocket
 
 
 RUN bun install
-RUN bun run db:migrate
+RUN bun run db:generate
 
 
 EXPOSE 8081

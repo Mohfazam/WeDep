@@ -2,6 +2,8 @@ FROM oven/bun:1
 
 WORKDIR /usr/src/app
 
+ARG DATABASE_URL
+
 COPY ./packages ./packages
 COPY ./bun.lock ./bun.lock
 
@@ -12,9 +14,9 @@ COPY ./apps/frontend ./apps/frontend
 
 
 RUN bun install
-RUN bun run db:migrate
-RUN bun run build
+RUN bun run db:generate
+RUN DATABASE_URL=${DATABASE_URL} bun run build
 
-EXPOSE 8080
+EXPOSE 3000
 
 CMD [ "bun", "run", "start:backend" ]
