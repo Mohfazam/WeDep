@@ -11,14 +11,10 @@ COPY ./turbo.json ./turbo.json
 COPY ./apps/websocket ./apps/websocket
 
 
-
-COPY . .
-
 RUN bun install
 RUN bun run db:migrate
 
-RUN bun install
 
-EXPOSE 8080
+EXPOSE 8081
 
-CMD [ "bun", "run", "index.ts" ]
+CMD ["bun", "run", "start:websocket"]
